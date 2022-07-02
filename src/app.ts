@@ -8,7 +8,7 @@ import { route } from './routes/routes';
 import { connectToDb } from './config/db';
 import { merge } from './lib/merge';
 import { config } from './config';
-
+const methodOverride = require('method-override');
 dotenv.config();
 
 const conf = merge(config, process.env);
@@ -20,6 +20,9 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Config to use put, delete
+app.use(methodOverride('_method'));
+
 // HTTP logger
 app.use(morgan('combined'));
 
@@ -28,6 +31,11 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
+        helpers: {
+            sum(val1: number, val2: number) {
+                return val1 + val2;
+            },
+        },
     }),
 );
 app.set('view engine', 'hbs');

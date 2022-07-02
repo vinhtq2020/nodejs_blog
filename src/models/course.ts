@@ -14,7 +14,7 @@ export interface Course {
 export const courseModel: Attributes = {
     id: {
         key: true,
-        required: true,
+        lenght: 40,
     },
     name: {
         required: true,
@@ -29,7 +29,6 @@ export const courseModel: Attributes = {
         lenght: 255,
     },
     slug: {
-        required: true,
         lenght: 255,
     },
     videoId: {

@@ -1,6 +1,6 @@
-import { Application } from "express";
-import { ApplicationContext } from "../context";
+import { Application } from 'express';
+import { ApplicationContext } from '../context';
 
-export function newRoute(app:Application,ctx:ApplicationContext){
-    app.get('/new',ctx.newController.index);
+export function newRoute(app: Application, ctx: ApplicationContext) {
+    app.get('/', ctx.newController.index);
 }

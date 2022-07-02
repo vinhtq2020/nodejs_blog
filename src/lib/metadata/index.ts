@@ -13,9 +13,10 @@ export interface Metadata {
 export interface Attribute {
     key?: boolean;
     id?: string;
+    name?: string;
     required?: boolean;
     lenght?: number;
-    type?: 'datetime' | 'ObjectId';
+    type?: 'datetime' | 'ObjectId' | 'string' | 'text';
 }
 
 export function build(attributes?: Attributes): Metadata {

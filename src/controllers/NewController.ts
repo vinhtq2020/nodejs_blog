@@ -16,11 +16,6 @@ export class NewController {
             .catch(next);
         // res.render('new');
     }
-    show(req: Request, res: Response, next: NextFunction) {
-        this.service.loadBySlug(req.params.slug).then((val) => {
-            res.render('courses/show', { course: val });
-        });
-    }
 }
 export function useNewController(db: Db): NewController {
     return new NewController(useCourseService(db));
