@@ -16,7 +16,7 @@ export interface Attribute {
     name?: string;
     required?: boolean;
     lenght?: number;
-    type?: 'datetime' | 'ObjectId' | 'string' | 'text';
+    type?: 'datetime' | 'ObjectId' | 'string' | 'text' | 'boolean';
 }
 
 export function build(attributes?: Attributes): Metadata {

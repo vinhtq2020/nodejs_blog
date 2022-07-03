@@ -7,8 +7,9 @@ export interface Course {
     image?: string;
     slug?: string;
     videoId?: string;
-    createAt?: Date;
-    updateAt?: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
 }
 
 export const courseModel: Attributes = {
@@ -38,7 +39,13 @@ export const courseModel: Attributes = {
     createdAt: {
         type: 'datetime',
     },
-    updateAt: {
+    updatedAt: {
         type: 'datetime',
+    },
+    deletedAt: {
+        type: 'datetime',
+    },
+    deleted: {
+        type: 'boolean',
     },
 };

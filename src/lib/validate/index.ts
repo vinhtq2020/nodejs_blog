@@ -90,6 +90,10 @@ export function validate(obj: any, attributes: Attributes): Promise<ErrorMessage
                                     }
                                 }
                                 break;
+                            case 'boolean':
+                                if (at !== 'boolean') {
+                                    errors.push(createError(na, path, at));
+                                }
                             default:
                                 break;
                         }
@@ -119,9 +123,12 @@ export function validate(obj: any, attributes: Attributes): Promise<ErrorMessage
     return Promise.resolve(errors);
 }
 
-function createError(key: string, path: string, code: string, param?: string | number): ErrorMessage {
+function createError(key: string, path: string, code?: string, param?: string | number): ErrorMessage {
     let x = key;
     if (path && path.length > 0) x = path + '.' + key;
+    if (!code) {
+        code = 'string';
+    }
     const error: ErrorMessage = {
         field: x,
         code,

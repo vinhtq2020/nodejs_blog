@@ -58,6 +58,9 @@ export class CourseController {
         if (obj.name && !obj.slug) {
             obj.slug = ChangeToSlug(obj.name);
         }
+        if (!obj.createdAt || obj.createdAt === '') {
+            obj.createdAt = new Date();
+        }
         validate(obj, this.metadata)
             .then((errs) => {
                 if (errs && errs.length > 0) {
@@ -90,9 +93,10 @@ export class CourseController {
         this.service
             .delete(req.params.id)
             .then((val) => {
-                console.log(val);
-
-                res.redirect('back');
+                if (val) res.redirect('back');
+                else {
+                    res.status(500).end('Internal Server Error');
+                }
             })
             .catch(next);
     }
@@ -100,6 +104,10 @@ export class CourseController {
         const obj = req.body;
         if (!obj || obj === '') {
             return res.status(400).end('the request body is empty');
+        }
+        if (!obj.updatedAt || obj.updatedAt === '') {
+            obj.updatedAt = new Date();
+            console.log(obj);
         }
         if (obj.name && !obj.slug) {
             obj.slug = ChangeToSlug(obj.name);
